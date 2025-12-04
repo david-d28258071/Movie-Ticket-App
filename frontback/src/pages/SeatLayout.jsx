@@ -64,16 +64,16 @@ const SeatLayout = () => {
           return (
             <button
               key={seatId}
-              onClick={() => handleSeatClick(seatId)}
+              onClick={() => handleSeatClick(seatId)} 
               className={`h-8 w-8 rounded-md border border-primary/60 cursor-pointer 
                 ${isSelected ? "bg-primary text-white" : ""}`}
             >
-              {seatId}
+              {seatId} 
             </button>
           );
         })}
       </div>
-    </div>
+    </div> 
   );
 
   if (!show) return <div className="p-10">Loading...</div>;
@@ -146,4 +146,4 @@ const SeatLayout = () => {
   );
 };
 
-export default SeatLayout;
+export default SeatLayout; 
