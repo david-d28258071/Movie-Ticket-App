@@ -1,24 +1,39 @@
-import express from 'express'
-import cors from 'cors'
-import 'dotenv/config'
-import connectDB from './server/config/db.js';
-import { clerkMiddleware, Client } from '@clerk/express';
-import { inngest } from './server/inngest/index.js';
-import {serve} from 'inngest/express'
-import { Inngest,functions } from './inngest/index.js';
+// server.js
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
+import connectDB from "./server/config/db.js";
+import { clerkMiddleware } from "@clerk/express";
+import { serve } from "inngest/express";
+import { inngest, functions } from "./server/inngest/index.js";
 
 const app = express();
-const port = 3000 ;
+const port = process.env.PORT || 3000;
 
-await connectDB()
-// Middleware
+async function start() {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("DB connected.");
 
-app.use(express.json());
-app.use(cors());
-app.use(clerkMiddleware())
+    // Middleware
+    app.use(express.json());
+    app.use(cors());
+    app.use(clerkMiddleware());
 
-// Routes
-app.get('/' , (req , res)=>res.send("Server is Live"));
-app.use('/api/inngest' , serve({client: Inngest , functions}))
+    // Routes
+    app.get("/", (req, res) => res.send("Server is Live"));
 
-app.listen(port , ()=>console.log(`Server runnning at http://localhost:${port}`))
+    // Inngest
+    app.use("/api/inngest", serve({ client: inngest, functions }));
+
+    app.listen(port, () =>
+      console.log(`Server running at http://localhost:${port}`)
+    );
+  } catch (err) {
+    console.error("Server failed to start:", err);
+    process.exit(1);
+  }
+}
+
+start();
