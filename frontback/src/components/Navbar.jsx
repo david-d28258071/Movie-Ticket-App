@@ -20,7 +20,7 @@ const Navbar = () => {
   flex flex-col md:flex-row items-center 
   md:justify-center gap-8 md:px-8 py-3 max-md:min-h-screen 
   min-md:rounded-full backdrop-blur-lg md:bg-white/10 md:border border-gray-300/20 
-  overflow-hidden transition-[width] duration-300 ${isopen?'max-md:w-full':'max-md:w-0'}`}>
+  overflow-hidden transition-[width] duration-300 ${isopen? 'max-md:w-full':'max-md:w-0'}`}>
         <X className='md:hidden absolute top-6 right-6 w-6 h-6 cursor-pointer' onClick={()=>setIsopen(!isopen)}/>
         <Link onClick={()=>{scrollTo(0,0),setIsopen(false)}} to='/'>Home</Link> 
         <Link to='/Movies'>Movies</Link>
@@ -37,7 +37,7 @@ const Navbar = () => {
           !user ? (
             <button  onClick={openSignIn} className='px-4 py-1 sm:px-7 sm:py-2 bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer'>Login</button>
 
-          ):(
+          ):( 
             <UserButton>
               <UserButton.MenuItems>
                 <UserButton.Action label="My Booking" labelIcon={<TicketPlus width={15}/>} onClick={()=> navigate('/MyBooking')}/>
