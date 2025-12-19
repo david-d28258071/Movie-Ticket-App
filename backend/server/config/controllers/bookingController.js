@@ -1,9 +1,11 @@
+import Show from "../models/show.js";
 
 
 
 
 // function to check availability of seats for movie 
 const checkSeatsAvailability = async (showId , selectedSeats)=>{
+    
     try{
         const showData = await Show.findById(showId)
         if(!showData) return false;
@@ -22,7 +24,7 @@ const checkSeatsAvailability = async (showId , selectedSeats)=>{
 
 }
 
-export default  async function createBooking   (req , res){
+export const createBooking = async (req , res)=>{
      try{
         const {userId} = req.Auth();
         const {showId , selectedSeats} = req.body;
@@ -79,3 +81,4 @@ export const getOccupiedSeats = async (req , res)=>{
          }
 
 }
+

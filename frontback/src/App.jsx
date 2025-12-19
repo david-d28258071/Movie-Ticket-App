@@ -9,15 +9,19 @@ import MyBooking from "./pages/MyBooking.jsx";
 import Favorite from "./pages/Favorite.jsx";
 import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer.jsx";
-import { Layout } from "lucide-react";
+import { Layout, User } from "lucide-react";
 import Dashboard from "./pages/admin/Dashboard.jsx";
 import AddShows from "./pages/admin/AddShows.jsx";
 import ListShows from "./pages/admin/ListShows.jsx";
 import ListBooking from "./pages/admin/ListBooking.jsx";
 import AdminSideBar from "./components/admin/AdminSideBar.jsx";
+import { SignIn } from "@clerk/clerk-react";
+import { useAppContext } from "./context/AppContext.jsx";
 
 const App = () => {
   const isadminroute = useLocation().pathname.startsWith("/admin");
+
+  const {user} = useAppContext()
 
   return (
     <>
@@ -31,6 +35,11 @@ const App = () => {
         <Route path="/my-bookings" element={<MyBooking />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/admin/*" element={<AdminSideBar/>}>
+        <Route path="/admin/*" element= {user ? <Layout/> : (
+          <div className="min-h-screen flex justify-center items-center">
+            <SignIn fallbackRedirectUrl={'/admin'}/>
+          </div>
+        )}/>
           <Route index element={<Dashboard/>}/>
           <Route path="add-shows" element={<AddShows/>}/>
           <Route path="list-shows" element={<ListShows/>}/>

@@ -7,6 +7,9 @@ import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import { inngest, functions } from "./server/inngest/index.js";
 import showRouter from './server/routes/showRoutes.js'
+import adminRouter from "./server/routes/adminRoutes.js";
+import userRouter from "./server/routes/userRouter.js";
+import bookingRouter from "./server/routes/bookingRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -29,10 +32,9 @@ async function start() {
     app.use('/api/inngest' , serve({ client: inngest , functions}))
     app.use('/api/show' , showRouter )
     app.use('/api/booking' , bookingRouter)
+    app.use('/api/admin' , adminRouter)
+    app.use('/api/user' , userRouter)
 
-
-    // Inngest
-    app.use("/api/inngest", serve({ client: inngest, functions }));
 
     app.listen(port, () =>
       console.log(`Server running at http://localhost:${port}`)

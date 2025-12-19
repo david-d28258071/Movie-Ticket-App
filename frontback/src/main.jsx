@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import ErrorBoundary from "./pages/ErrorBoundery.jsx";
 import "./index.css";
 import {ClerkProvider}from '@clerk/clerk-react'
+import { AppProvider } from "./context/AppContext.jsx";
 
  const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -17,7 +18,9 @@ createRoot(document.getElementById("root")).render(
     <React.StrictMode>
     <ErrorBoundary>
       <BrowserRouter>
-        <App />
+      <AppProvider>
+      <App />
+      </AppProvider>
       </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>
