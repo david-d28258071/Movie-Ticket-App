@@ -1,11 +1,13 @@
-
+                                
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StarIcon } from 'lucide-react';
 import timeformat from '../lib/timeformat';
+import { useAppContext } from '../context/AppContext';
 
 const Moviecard = ({ movie }) => {
   const navigate = useNavigate();
+  const {image_base_url} = useAppContext();
 
   if (!movie) return null; // Safeguard: skip rendering if movie is undefined
 
@@ -19,7 +21,7 @@ const Moviecard = ({ movie }) => {
       
       <img
         onClick={goToMovie}
-        src={movie?.backdrop_path || "/placeholder.jpg"}
+        src={image_base_url + movie?.backdrop_path || "/placeholder.jpg"}
         alt={movie?.title || "Movie poster"}
         className="rounded-lg h-52 w-full object-cover object-right-bottom cursor-pointer"
       />

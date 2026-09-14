@@ -126,7 +126,7 @@ const SeatLayout = () => {
 
           {/* Rest rows */}
           <div className="grid grid-cols-2 gap-11">
-            {groupRows.slice(1).map((group, i) => (
+              {groupRows.slice(1).map((group, i) => (
               <div key={i}>
                 {group.map(row => renderSeats(row))}
               </div>

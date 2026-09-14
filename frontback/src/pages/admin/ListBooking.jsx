@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { dummyBookingData } from '../../assets/assets';
 import Title from './Title';
 import { dateFormat } from '../../lib/dateFormat';
+import axios from 'axios';
+
 
 const ListBooking = () => {
 
@@ -10,15 +12,26 @@ const ListBooking = () => {
    const [bookings , setBookings]= useState([]);
    const [loading , setLoading]= useState(true);
 
-   const getAllBooking= ()=>{
-    setBookings(dummyBookingData);
-    setLoading(false);
+   const getAllBooking = async  ()=>{
+    try {
+       const {data} = await axios.get('/api/admin/all-bookings' , {headers: {Authorization: `Bearer ${await getToken()}`}})
+       setBookings(data.bookings)
+
+    } catch (error) {
+       console.error(error)
+    }
+
+    setLoading(false)
+    
 
    }
 
    useEffect(()=>{
+  
     getAllBooking();
-   },[]);
+  
+
+ },[]);
 
   return (
     <>

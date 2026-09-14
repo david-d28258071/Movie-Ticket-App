@@ -24,6 +24,7 @@
     "@clerk/clerk-react": "^5.56.0",
     "@tailwindcss/vite": "^4.1.14",
     "axios": "^1.13.2",
+    "inngest": "^3.54.2",
     "lucide-react": "^0.553.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

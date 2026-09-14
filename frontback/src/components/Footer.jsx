@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="px-6  md:px-16 mt-40 lg:px-36 w-full text-gray-300">
             <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-gray-500 pb-10">
                 <div className="md:max-w-96">
-                    <img alt="" class="h-11" src={assets.logo} />
+                    <img alt="" className="h-11" src={assets.logo} />
                     <p className="mt-6 text-sm">
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </p>
@@ -28,8 +28,8 @@ const Footer = () => {
                     <div>
                         <h2 className="font-semibold mb-5">Get in touch</h2>
                         <div className="text-sm space-y-2">
-                            <p>+1-234-567-890</p>
-                            <p>contact@example.com</p>
+                            <p>8925369140</p>
+                            <p>d28258071@gmail.com</p>
                         </div>
                     </div>
                 </div>
