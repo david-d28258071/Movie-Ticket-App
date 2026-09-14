@@ -8,14 +8,17 @@ const movieSchema = new mongoose.Schema({
     poster_path: {type: String , required: true},
     backdrop_path: {type: String , required: true},
     release_date: {type: String , required: true},
-    orginal_language: {type: String},
+    original_language: {type: String},
     tagline: {type: String},
     genres: {type: Array , required: true},
-    caste: {type: Array , required: true},
+    cast: {type: Array , required: true},
     vote_average: {type: Number , required: true},
     runtime: {type: Number , required: true},},
-    {timeStampes: true}
+    {timestamps: true}
 )
 
-const Movie = mongoose.model('Movie', movieSchema)
+const Movie = mongoose.model('Movie', movieSchema);
+
+
+
 export default Movie;

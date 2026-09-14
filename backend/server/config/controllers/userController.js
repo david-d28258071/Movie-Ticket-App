@@ -10,7 +10,7 @@ export const getUserBookings = async (req , res)=>{
 
         const bookings = await Booking.find({user}).populate({
             path: "show",
-            populate: {path: "movie"}
+            populate: {path: "movie"} 
         }).sort({createdAt: -1})
 
         res.json({success: true , bookings})
@@ -35,7 +35,7 @@ export const updateFavorite = async (req , res)=>{
             user.privateMetadata.favorites = []
         }
 
-        if(!user.privateMetadata.favorites.include(movieId)){
+        if(!user.privateMetadata.favorites.includes(movieId)){
             user.privateMetadata.favorites.push(movieId)
         } else {
              user.privateMetadata.favorites = user.privateMetadata.favorites.filter(item =>item !== movieId)
