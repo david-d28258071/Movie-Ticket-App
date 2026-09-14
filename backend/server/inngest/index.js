@@ -7,8 +7,9 @@ export const inngest = new Inngest({ id: "movie-ticket-booking" });
 
 // USER CREATE
 const syncUserCreation = inngest.createFunction(
-  { id: "sync-user-from-clerk" },
-  { event: "clerk/user.created" },
+  { id: "sync-user-from-clerk" ,
+   triggers:{event: "clerk/user.created"} },
+ 
   async ({ event }) => {
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
 
@@ -24,10 +25,11 @@ const syncUserCreation = inngest.createFunction(
 );
 
 
+
 // USER DELETE
 const syncUserDeletion = inngest.createFunction(
-  { id: "delete-user-from-clerk" },
-  { event: "clerk/user.deleted" },
+  { id: "delete-user-from-clerk" ,
+   triggers:{event: "clerk/user.deleted"} },
   async ({ event }) => {
     const { id } = event.data;
     await User.findByIdAndDelete(id);
@@ -37,8 +39,8 @@ const syncUserDeletion = inngest.createFunction(
 
 // USER UPDATE
 const syncUserUpdation = inngest.createFunction(
-  { id: "update-user-from-clerk" },   // FIXED ID
-  { event: "clerk/user.updated" },    // FIXED EVENT NAME
+  { id: "update-user-from-clerk" ,   // FIXED ID
+  triggers:{event: "clerk/user.updated"} },    // FIXED EVENT NAME
   async ({ event }) => {
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
 
